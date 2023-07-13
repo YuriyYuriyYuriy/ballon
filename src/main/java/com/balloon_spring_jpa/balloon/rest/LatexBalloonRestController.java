@@ -13,30 +13,30 @@ import java.util.UUID;
 @RequestMapping("/api/latex")
 public class LatexBalloonRestController {
 
-    private final LatexBalloonServiceImpl service;
+    private final LatexBalloonServiceImpl latexBalloonService;
 
     @GetMapping("/balloons")
     public List<LatexBalloonDTO> findAll() {
-        return service.findAll();
+        return latexBalloonService.findAll();
     }
 
     @PostMapping("/balloons")
-    public LatexBalloonDTO save(@RequestBody LatexBalloonDTO latexBalloonDTO) {
-        return service.save(latexBalloonDTO);
+    public LatexBalloonDTO save(@RequestBody LatexBalloonDTO latexBalloon) {
+        return latexBalloonService.save(latexBalloon);
     }
 
     @PutMapping("/balloons/{id}")
-    public LatexBalloonDTO update(@RequestBody LatexBalloonDTO latexBalloonDTO, @PathVariable UUID id) {
-        return service.update(latexBalloonDTO, id);
+    public LatexBalloonDTO update(@RequestBody LatexBalloonDTO latexBalloon, @PathVariable UUID id) {
+        return latexBalloonService.update(latexBalloon, id);
     }
 
     @GetMapping("/balloons/{id}")
     public LatexBalloonDTO findById(@PathVariable UUID id) {
-        return service.findById(id);
+        return latexBalloonService.findById(id);
     }
 
     @DeleteMapping("/balloons/{id}")
     public void delete(@PathVariable UUID id) {
-        service.delete(id);
+        latexBalloonService.delete(id);
     }
 }

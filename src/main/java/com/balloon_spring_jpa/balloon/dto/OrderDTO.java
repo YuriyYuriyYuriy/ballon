@@ -1,5 +1,10 @@
 package com.balloon_spring_jpa.balloon.dto;
 
+import com.balloon_spring_jpa.balloon.balloonEnum.OrderStatus;
+import com.balloon_spring_jpa.balloon.entity.FoilBalloonQuantityInOrder;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,16 +21,13 @@ import java.util.UUID;
 @Getter
 public class OrderDTO {
 
-    private UUID id = null;
+    private UUID id;
     private String address;
     private LocalDateTime dateTime;
-    private CustomerDTO customer;
+    private OrderStatus orderStatus;
     private BigDecimal totalPrice;
-
-
-    private List<FoilBalloonDTO> foilBalloons;
-
-
-    private List<LatexBalloonDTO> latexBalloons;
+    private CustomerDTO customer;
+    private List<LatexBalloonQuantityInOrderDTO> latexBalloonQuantity;
+    private List<FoilBalloonQuantityInOrderDTO> foilBalloonQuantity;
 }
 

@@ -1,5 +1,7 @@
 package com.balloon_spring_jpa.balloon.dto;
 
+import com.balloon_spring_jpa.balloon.balloonEnum.LatexBalloonType;
+import com.balloon_spring_jpa.balloon.entity.LatexBalloonQuantityInOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,10 +17,11 @@ import java.util.UUID;
 @Setter
 public class LatexBalloonDTO {
 
-    private UUID id = null;
+    private UUID id;
+    private LatexBalloonType balloonType;
     private int size;
     private BigDecimal cost;
-    private int quantity;
+    private int stockBalance;
     private boolean isGlue;
-    private List<OrderDTO> orders;
+    private List<LatexBalloonQuantityInOrderDTO> latexBalloonQuantityInOrder;
 }

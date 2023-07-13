@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,7 +20,7 @@ import java.util.UUID;
 public class Customer {
 
     @Id
-    @GeneratedValue(generator = "UUID")
+    @GeneratedValue//(generator = "UUID")
     @Column(name = "id")
     private UUID id;
 
@@ -28,6 +29,9 @@ public class Customer {
 
     @Column(name = "phone_number")
     private long phone_number;
+
+    @Column(name = "total_balance")
+    private BigDecimal totalBalance = BigDecimal.ZERO;
 
     @JsonIgnore
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)

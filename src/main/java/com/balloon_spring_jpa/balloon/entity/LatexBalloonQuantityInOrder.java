@@ -1,6 +1,7 @@
 package com.balloon_spring_jpa.balloon.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,17 +15,18 @@ import java.util.UUID;
 @Setter
 @Getter
 @Entity
+@Table(name = "latex_balloon_quantity_in_order")
 public class LatexBalloonQuantityInOrder {
 
     @Id
-    @GeneratedValue(generator = "UUID")
+    @GeneratedValue//(generator = "UUID")
     @Column(name = "id")
     private UUID id;
 
     @Column(name = "quantity")
     private int quantity;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private LatexBalloon latexBalloon;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

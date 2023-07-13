@@ -14,53 +14,60 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
-    private final CustomerRepository repository;
-    private final CustomerMapper mapper;
+    private final CustomerRepository customerRepository;
+    private final CustomerMapper customerMapper;
+
+
+    /**
+     * Добавить логику скидки с учетом Сustomer.totalBalabce.
+     */
+
+
 
     @Transactional
     @Override
     public List<CustomerDTO> findAll() {
-        var allEntities = repository.findAll();
-        return mapper.mapToCustomerListDTO(allEntities);
+        var customerList = customerRepository.findAll();
+        return customerMapper.mapToCustomerListDTO(customerList);
     }
 
     @Transactional
     @Override
     public List<CustomerDTO> getAllCustomersWithOrders() {
-        var allWithOrders = repository.findAllWithOrders();
-        return mapper.mapToCustomerListDTO(allWithOrders);
+        var allWithOrders = customerRepository.findAllWithOrders();
+        return customerMapper.mapToCustomerListDTO(allWithOrders);
     }
 
     @Transactional
     @Override
     public CustomerDTO findById(UUID id) {
-        var byId = repository.findById(id)
+        var customerById = customerRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("no such entity"));
-        return mapper.mapToCustomerDTO(byId);
+        return customerMapper.mapToCustomerDTO(customerById);
     }
 
     @Transactional
     @Override
     public CustomerDTO save(CustomerDTO customer) {
-        var toEntity = mapper.mapToCustomerEntity(customer);
-        var saveEntity = repository.save(toEntity);
-        return mapper.mapToCustomerDTO(saveEntity);
+        var toEntity = customerMapper.mapToCustomerEntity(customer);
+        var savingEntity = customerRepository.save(toEntity);
+        return customerMapper.mapToCustomerDTO(savingEntity);
     }
 
     @Transactional
     @Override
     public CustomerDTO update(CustomerDTO customer, UUID id) {
-        var byId = repository.findById(id).orElseThrow();
-        var toEntity = mapper.mapToCustomerEntity(customer);
+        customerRepository.findById(id).orElseThrow();
+        var toEntity = customerMapper.mapToCustomerEntity(customer);
         toEntity.setId(id);
-        var savingEntity = repository.save(toEntity);
-        return mapper.mapToCustomerDTO(savingEntity);
+        var savingEntity = customerRepository.save(toEntity);
+        return customerMapper.mapToCustomerDTO(savingEntity);
     }
 
     @Transactional
     @Override
     public void delete(UUID id) {
-        var customerId = repository.findById(id).orElseThrow();
-        repository.delete(customerId);
+        var customerById = customerRepository.findById(id).orElseThrow();
+        customerRepository.delete(customerById);
     }
 }

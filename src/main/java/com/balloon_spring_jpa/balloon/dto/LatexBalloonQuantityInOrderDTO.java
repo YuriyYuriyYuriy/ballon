@@ -5,19 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class CustomerDTO {
+public class LatexBalloonQuantityInOrderDTO {
 
     private UUID id;
-    private String name;
-    private long phone_number;
-    private BigDecimal totalBalance = BigDecimal.ZERO;
-    private List<OrderDTO> orders;
+    private int quantity;
+    private LatexBalloonDTO latexBalloon;
+    private OrderDTO order;
 }

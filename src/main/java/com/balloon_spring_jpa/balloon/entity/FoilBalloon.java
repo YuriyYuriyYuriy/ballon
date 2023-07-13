@@ -21,13 +21,13 @@ import java.util.UUID;
 public class FoilBalloon {
 
     @Id
-    @GeneratedValue(generator = "UUID")
+    @GeneratedValue//(generator = "UUID")
     @Column(name = "id")
     private UUID id;
 
     @Column(name = "name")
     @Enumerated(EnumType.STRING)
-    private FoilBalloonType name;
+    private FoilBalloonType foilBalloonType;
 
     @Column(name = "size")
     private int size;
@@ -35,12 +35,13 @@ public class FoilBalloon {
     @Column(name = "cost")
     private BigDecimal cost;
 
-    @Column(name = "quantity")
-    private int quantity;
+    @Column(name = "stock_balance")
+    private int stockBalance;
 
     @JsonIgnore
    // @ManyToMany(mappedBy = "foilBalloons")
-    @OneToMany(mappedBy = "foilBalloon", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<FoilBalloonQuantityInOrder> foilBalloonQuantityInOrder;
+    @OneToMany(mappedBy = "foilBalloon", fetch = FetchType.LAZY)
+    //, cascade = CascadeType.ALL) из-за это го объукт становиться detached
+    private List<FoilBalloonQuantityInOrder> foilBalloonQuantityInOrders;
 }
 

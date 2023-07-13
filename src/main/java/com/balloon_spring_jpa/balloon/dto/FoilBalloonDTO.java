@@ -1,11 +1,13 @@
 package com.balloon_spring_jpa.balloon.dto;
 
 import com.balloon_spring_jpa.balloon.balloonEnum.FoilBalloonType;
+import com.balloon_spring_jpa.balloon.entity.FoilBalloonQuantityInOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,11 +17,10 @@ import java.util.UUID;
 @Getter
 public class FoilBalloonDTO {
 
-    private UUID id = null;
-    private FoilBalloonType name;
+    private UUID id;
+    private FoilBalloonType foilBalloonType;
     private int size;
-    private double cost;
-    private int quantity;
-    private List<OrderDTO> orders;
-
+    private BigDecimal cost;
+    private int stockBalance;
+    private List<FoilBalloonQuantityInOrderDTO> foilBalloonQuantityInOrders;
 }

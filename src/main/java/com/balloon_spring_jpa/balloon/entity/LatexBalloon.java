@@ -21,13 +21,13 @@ import java.util.UUID;
 public class LatexBalloon {
 
     @Id
-    @GeneratedValue(generator = "UUID")
+    @GeneratedValue//(generator = "UUID")
     @Column(name = "id")
     private UUID id;
 
-    @Column(name = "name")
+    @Column(name = "balloonType")
     @Enumerated(EnumType.STRING)
-    private LatexBalloonType name;
+    private LatexBalloonType balloonType;
 
     @Column(name = "size")
     private int size;
@@ -35,16 +35,14 @@ public class LatexBalloon {
     @Column(name = "cost")
     private BigDecimal cost;
 
-    @Column(name = "quantity")
-    private int quantity;
+    @Column(name = "stock_balance")
+    private int stockBalance;
 
     @Column(name = "is_glue")
     private boolean isGlue;
 
-    @OneToMany(mappedBy = "latexBalloon")
+    @JsonIgnore
+    @OneToMany(mappedBy = "latexBalloon", fetch = FetchType.LAZY)
     private List<LatexBalloonQuantityInOrder> latexBalloonQuantityInOrder;
 
-//    @JsonIgnore
-//    @ManyToMany(mappedBy = "latexBalloons")
-//    private List<Order> orders;
 }
